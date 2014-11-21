@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 public class Main {
 	public static void main(String[] args) {
 		String host = "127.0.0.1"; // args[0];
-		int port = 6254; // Integer.parseInt(args[1]);
+		int port = 6100; // Integer.parseInt(args[1]);
 		String sName = Integer.toString(randInt(0, 999999));
 		getinput(host, port, sName);
 	}
