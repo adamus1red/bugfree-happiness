@@ -1,4 +1,31 @@
+/*
+ *
+ * Filename: Client.java
+ *
+ * Synopsis: ace2 
+ *
+ * GitHub Repository: https://github.com/adamus1red/bugfree-happiness
+ * 
+ * Authors:
+ *      Adam McGhie, Reg no: 201240207
+ *
+ * Promise: I confirm that this submission is all my own work.
+ *
+ *               (Adam McGhie)	__________________________________________
+ *
+ * Version: See https://github.com/adamus1red/bugfree-happiness/commits/master
+ *
+ */
+
 package org.mcghie.ace2.single;
+
+/**
+ * This java program allows a client to connect to a server socket and send a string to the server.
+ * The server then responds with the character count and digit count of the received text.
+ * 
+ * @author Adam McGhie
+ * 
+ */
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,19 +37,29 @@ import java.util.Scanner;
 
 public class Client {
 
-	public Client(String rHost, int rPort, String rSName) {
+	public Client(String rHost, int rPort, String rSName, Boolean debug) {
 		try {
-			System.out.println("Break 1");
+			if (debug) {
+				System.out.println("Break 1");
+			}
+			;
 			Socket socket = new Socket(rHost, rPort);
-			System.out.println("Break 2");
-			getInput(socket);
-			System.out.println("Break 3");
+			if (debug) {
+				System.out.println("Break 2");
+			}
+			getInput(socket, debug);
+			if (debug) {
+				System.out.println("Break 3");
+			}
 			// receive the response from the server
-			System.out.println("Break 6");
+			if (debug) {
+				System.out.println("Break 6");
+			}
 			InputStream in = socket.getInputStream();
 			ObjectInputStream inStream = new ObjectInputStream(in);
-			System.out.println("Break 7");
-			// in.close();
+			if (debug) {
+				System.out.println("Break 7");
+			}
 			try {
 				Object responce = inStream.readObject();
 				System.out.println("Number of Characters "
@@ -34,7 +71,7 @@ public class Client {
 				e.printStackTrace();
 			}
 			System.out.println();
-			System.out.println("Response recieved from the server...");
+			System.out.println("Looks like server delivered. Closing client");
 		} catch (UnknownHostException e) {
 			System.out
 					.println("Check the server is running because I cannie connect tae it");
@@ -44,13 +81,17 @@ public class Client {
 		}
 	}
 
-	private void getInput(Socket socket) throws IOException {
+	private void getInput(Socket socket, Boolean debug) throws IOException {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Break 4");
+		if(debug){
+			System.out.println("Break 4");
+		}
 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 		String s = input.nextLine();
 		out.println(s);
-		System.out.println("Break 5");
+		if(debug){
+			System.out.println("Break 5");
+		}
 		input.close();
 
 	}
