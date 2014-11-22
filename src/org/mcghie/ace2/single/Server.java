@@ -4,17 +4,19 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
+
 	private int port;
 	private ServerSocket socket;
-
+	private MessageImpl message;
+	
 	public Server(int lPort) {
 		// create socket
 		port = lPort;
+		
 		try {
 				System.out.println("Break 1");
 				socket = new ServerSocket(port);
@@ -27,7 +29,9 @@ public class Server {
 				String inputLine = in.readLine();
 				System.out.println("got input from client");
 				System.out.println(inputLine);
-				out.writeObject(in);
+				message = new MessageImpl(inputLine);
+				System.out.println("Char Count: " + message.getCharacterCount() + "\nDigit Count: " + message.getDigitCount());
+				out.writeObject(message);
 				System.out.println("Sent user reply");
 				clientSocket.close();
 		} catch (IOException e) {

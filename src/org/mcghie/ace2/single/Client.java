@@ -4,17 +4,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class Client implements Serializable {
+public class Client {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
 	public Client(String rHost, int rPort, String rSName) {
 		try {
@@ -24,14 +19,16 @@ public class Client implements Serializable {
 			getInput(socket);
 			System.out.println("Break 3");
 			// receive the response from the server
-			System.out.println("Recieving response...");
+			System.out.println("Break 6");
 			InputStream in = socket.getInputStream();
 			ObjectInputStream inStream = new ObjectInputStream(in);
+			System.out.println("Break 7");
 			// in.close();
 			try {
 				while(inStream.readObject() != null){
 					Object responce = inStream.readObject();
-					System.out.println(responce.toString());
+					System.out.println("Number of Characters" + ((MessageImpl) responce).getCharacterCount());
+					System.out.println("Number of Digits" + ((MessageImpl) responce).getDigitCount());
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
