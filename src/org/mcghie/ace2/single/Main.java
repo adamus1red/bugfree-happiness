@@ -18,9 +18,15 @@
  */
 
 package org.mcghie.ace2.single;
+
 /**
  * This java program allows a client to connect to a server socket and send a string to the server.
  * The server then responds with the character count and digit count of the received text.
+ * 
+ * It takes in 2 optional cli arguments; 
+ * 
+ * Argument one: Host the client will connect to
+ * Argument two: Port the server will run on 
  * 
  * @author Adam McGhie
  * 
@@ -29,14 +35,24 @@ package org.mcghie.ace2.single;
 import java.util.Random;
 import java.util.Scanner;
 
-
 public class Main {
 	public static void main(String[] args) {
-		String host = "127.0.0.1"; // args[0];
-		int port = 6100; // Integer.parseInt(args[1]);
+		String host;
+		int port;
+		if (args[0] == null) {
+			host = "127.0.0.1"; // if we get no inputs on startup defualt
+		} else {
+			host = args[0]; // Get
+		}
+		if (args[1] == null) {
+			port = 6100;
+		} else {
+			port = Integer.parseInt(args[1]); // Integer.parseInt(args[1]);
+		}
 		String sName = Integer.toString(randInt(0, 999999));
 		getinput(host, port, sName);
 	}
+
 	/**
 	 * Get user input from command line and process it.
 	 * 
@@ -64,14 +80,15 @@ public class Main {
 		}
 	}
 
-	private static void startServer(int port){
+	private static void startServer(int port) {
 		Server server = new Server(port);
 	}
-	
-	private static void startClient(String host, int port, String sName, boolean b){
+
+	private static void startClient(String host, int port, String sName,
+			boolean b) {
 		Client client = new Client(host, port, sName, true);
 	}
-	
+
 	private static int randInt(int min, int max) {
 
 		// NOTE: Usually this should be a field rather than a method
