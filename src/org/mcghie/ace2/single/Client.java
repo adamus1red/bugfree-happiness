@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class Client {
 
-
 	public Client(String rHost, int rPort, String rSName) {
 		try {
 			System.out.println("Break 1");
@@ -25,11 +24,11 @@ public class Client {
 			System.out.println("Break 7");
 			// in.close();
 			try {
-				while(inStream.readObject() != null){
-					Object responce = inStream.readObject();
-					System.out.println("Number of Characters" + ((MessageImpl) responce).getCharacterCount());
-					System.out.println("Number of Digits" + ((MessageImpl) responce).getDigitCount());
-				}
+				Object responce = inStream.readObject();
+				System.out.println("Number of Characters "
+						+ ((MessageImpl) responce).getCharacterCount());
+				System.out.println("Number of Digits "
+						+ ((MessageImpl) responce).getDigitCount());
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

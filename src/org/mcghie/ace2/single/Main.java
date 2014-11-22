@@ -3,6 +3,7 @@ package org.mcghie.ace2.single;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -14,9 +15,9 @@ public class Main {
 
 	private static void getinput(String host, int port, String sName) {
 		// TODO Auto-generated method stub
-		Scanner in = new Scanner(System.in);
+		
 		while (true) {
-
+			Scanner in = new Scanner(System.in);
 			System.out
 					.println("Enter 1 to start the client or 2 to start the server");
 			System.out.println("or enter q to exit");
@@ -32,8 +33,8 @@ public class Main {
 			} else {
 				System.out.println("Invalid input. Try again.");
 			}
+			in.close();
 		}
-		in.close();
 	}
 
 	private static int randInt(int min, int max) {

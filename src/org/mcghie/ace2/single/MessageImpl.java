@@ -11,14 +11,14 @@ public class MessageImpl implements Message, Serializable {
 	public int digitCount;
 	public int characterCount;
 	private String message;
-	
-	public MessageImpl (String message){
+
+	public MessageImpl(String message) {
 		digitCount = 0;
 		characterCount = 0;
 		this.message = message;
 		setCounts();
 	}
-	
+
 	public void setCounts() {
 		String message_stripped = message.replaceAll("\\s+", "");
 		characterCount = message_stripped.length();
@@ -37,6 +37,5 @@ public class MessageImpl implements Message, Serializable {
 		// TODO Auto-generated method stub
 		return digitCount;
 	}
-	
 
 }
