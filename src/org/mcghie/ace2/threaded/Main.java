@@ -86,7 +86,7 @@ public class Main {
 
 	private static void startClient(String host, int port, String sName,
 			boolean b) {
-		Client client = new Client(host, port, sName, true);
+		Client client = new Client(host, port, sName, b);
 	}
 
 	private static int randInt(int min, int max) {
