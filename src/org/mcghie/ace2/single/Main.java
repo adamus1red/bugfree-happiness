@@ -81,11 +81,13 @@ public class Main {
 	}
 
 	private static void startServer(int port) {
+		@SuppressWarnings("unused")
 		Server server = new Server(port);
 	}
 
 	private static void startClient(String host, int port, String sName,
 			boolean b) {
+		@SuppressWarnings("unused")
 		Client client = new Client(host, port, sName, true);
 	}
 
