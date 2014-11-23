@@ -81,12 +81,12 @@ public class Main {
 	}
 
 	private static void startServer(int port) {
-		Server server = new Server(port);
+		(new Thread(new Server(port))).start();
 	}
 
 	private static void startClient(String host, int port, String sName,
 			boolean b) {
-		Client client = new Client(host, port, sName, b);
+		(new Thread(new Client(host, port, sName, true))).start();
 	}
 
 	private static int randInt(int min, int max) {
