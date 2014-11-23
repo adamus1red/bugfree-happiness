@@ -18,6 +18,7 @@
  */
 
 package org.mcghie.ace2.threaded;
+
 /**
  * This java program allows a client to connect to a server socket and send a string to the server.
  * The server then responds with the character count and digit count of the received text.
@@ -33,7 +34,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Server implements Runnable {
 
 	private int port;
 	private ServerSocket socket;
@@ -42,12 +43,22 @@ public class Server {
 	public Server(int lPort) {
 		// create socket
 		port = lPort;
-
+		System.out.println("Break 1");
 		try {
-			System.out.println("Break 1");
 			socket = new ServerSocket(port);
-			System.out.println("Break 2");
-			Socket clientSocket = socket.accept();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Break 2");
+	}
+
+	@Override
+	public void run() {
+		Socket clientSocket;
+		try {
+			clientSocket = socket.accept();
+
 			System.out.println("Break 4");
 			ObjectOutputStream out = new ObjectOutputStream(
 					clientSocket.getOutputStream());
