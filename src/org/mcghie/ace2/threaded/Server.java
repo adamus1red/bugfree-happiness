@@ -40,6 +40,13 @@ public class Server implements Runnable {
 	private ServerSocket socket;
 	private MessageImpl message;
 
+	/**
+	 * Initialises the server object
+	 * 
+	 * @modifies lPort
+	 * @param lPort
+	 */
+
 	public Server(int lPort) {
 		// create socket
 		port = lPort;
@@ -53,6 +60,10 @@ public class Server implements Runnable {
 		System.out.println("Break 2");
 	}
 
+	/**
+	 * Executes required stuff for threaded connection and replies to the client
+	 * 
+	 */
 	@Override
 	public void run() {
 		Socket clientSocket;

@@ -39,7 +39,17 @@ public class Client implements Runnable {
 	private Socket socket;
 	private Boolean debug;
 
-	public Client(String rHost, int rPort, String rSName, Boolean debug_message) {
+	/**
+	 * 
+	 * Take in required parameters and initialise the clients connection to the
+	 * server
+	 * 
+	 * @param rHost
+	 * @param rPort
+	 * @param debug_message
+	 */
+
+	public Client(String rHost, int rPort, Boolean debug_message) {
 		debug = debug_message;
 		if (debug) {
 			System.out.println("Break 1");
@@ -57,6 +67,13 @@ public class Client implements Runnable {
 		System.out.println("Looks like server delivered. Closing client");
 	}
 
+	/**
+	 * Gets user input from System.in and sends it to the connected server
+	 * 
+	 * @param socket
+	 * @param debug
+	 * @throws IOException
+	 */
 	private void getInput(Socket socket, Boolean debug) throws IOException {
 		Scanner input = new Scanner(System.in);
 		if (debug) {
@@ -72,6 +89,9 @@ public class Client implements Runnable {
 
 	}
 
+	/**
+	 * Threadable method
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

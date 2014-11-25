@@ -1,5 +1,4 @@
 /*
- *
  * Filename: Main.java
  *
  * Synopsis: ace2 
@@ -49,8 +48,7 @@ public class Main {
 		} else {
 			port = Integer.parseInt(args[1]); // Integer.parseInt(args[1]);
 		}
-		String sName = Integer.toString(randInt(0, 999999));
-		getinput(host, port, sName);
+		getinput(host, port);
 	}
 
 	/**
@@ -58,7 +56,7 @@ public class Main {
 	 * 
 	 * @author Adam McGhie
 	 */
-	private static void getinput(String host, int port, String sName) {
+	private static void getinput(String host, int port) {
 		while (true) {
 			Scanner in = new Scanner(System.in);
 			System.out
@@ -69,7 +67,7 @@ public class Main {
 			if (s.equals("2")) {
 				startServer(port);
 			} else if (s.equals("1")) {
-				startClient(host, port, sName, true);
+				startClient(host, port, true);
 			} else if (s.equals("q")) {
 				System.out.println("Good bye");
 				break;
@@ -80,26 +78,25 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Call a thread to start a new server. Requires that a valid port be sent
+	 * (currently hard coded to 6100)
+	 * 
+	 * @param port
+	 */
 	private static void startServer(int port) {
 		(new Thread(new Server(port))).start();
 	}
 
-	private static void startClient(String host, int port, String sName,
-			boolean b) {
-		(new Thread(new Client(host, port, sName, true))).start();
-	}
-
-	private static int randInt(int min, int max) {
-
-		// NOTE: Usually this should be a field rather than a method
-		// variable so that it is not re-seeded every call.
-		Random rand = new Random();
-
-		// nextInt is normally exclusive of the top value,
-		// so add 1 to make it inclusive
-		int randomNum = rand.nextInt((max - min) + 1) + min;
-
-		return randomNum;
-
+	/**
+	 * Call a thread to start a new client.
+	 * 
+	 * @param host
+	 * @param port
+	 * @param sName
+	 * @param b
+	 */
+	private static void startClient(String host, int port, boolean b) {
+		(new Thread(new Client(host, port, true))).start();
 	}
 }

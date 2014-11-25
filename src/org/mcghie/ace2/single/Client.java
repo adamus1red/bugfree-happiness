@@ -37,7 +37,7 @@ import java.util.Scanner;
 
 public class Client {
 
-	public Client(String rHost, int rPort, String rSName, Boolean debug) {
+	public Client(String rHost, int rPort, Boolean debug) {
 		try {
 			if (debug) {
 				System.out.println("Break 1");

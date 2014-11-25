@@ -1,5 +1,4 @@
 /*
- *
  * Filename: Main.java
  *
  * Synopsis: ace2 
@@ -49,8 +48,7 @@ public class Main {
 		} else {
 			port = Integer.parseInt(args[1]); // Integer.parseInt(args[1]);
 		}
-		String sName = Integer.toString(randInt(0, 999999));
-		getinput(host, port, sName);
+		getinput(host, port);
 	}
 
 	/**
@@ -58,7 +56,7 @@ public class Main {
 	 * 
 	 * @author Adam McGhie
 	 */
-	private static void getinput(String host, int port, String sName) {
+	private static void getinput(String host, int port) {
 		while (true) {
 			Scanner in = new Scanner(System.in);
 			System.out
@@ -69,7 +67,7 @@ public class Main {
 			if (s.equals("2")) {
 				startServer(port);
 			} else if (s.equals("1")) {
-				startClient(host, port, sName, true);
+				startClient(host, port, true);
 			} else if (s.equals("q")) {
 				System.out.println("Good bye");
 				break;
@@ -85,23 +83,8 @@ public class Main {
 		Server server = new Server(port);
 	}
 
-	private static void startClient(String host, int port, String sName,
-			boolean b) {
+	private static void startClient(String host, int port, boolean b) {
 		@SuppressWarnings("unused")
-		Client client = new Client(host, port, sName, true);
-	}
-
-	private static int randInt(int min, int max) {
-
-		// NOTE: Usually this should be a field rather than a method
-		// variable so that it is not re-seeded every call.
-		Random rand = new Random();
-
-		// nextInt is normally exclusive of the top value,
-		// so add 1 to make it inclusive
-		int randomNum = rand.nextInt((max - min) + 1) + min;
-
-		return randomNum;
-
+		Client client = new Client(host, port, true);
 	}
 }
